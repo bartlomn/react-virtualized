@@ -152,6 +152,16 @@ type Props = {
   onScroll: (params: Scroll) => void,
 
   /**
+   * Callback invoked whenever the internal scrolling state changes
+   */
+  onScrollStart: () => void,
+
+  /**
+   * Callback invoked whenever the internal scrolling state changes
+   */
+  onScrollEnd: () => void,
+
+  /**
    * Called whenever a horizontal or vertical scrollbar is added or removed.
    * This prop is not intended for end-user use;
    * It is used by MultiGrid to support fixed-row/fixed-column scroll syncing.
@@ -270,6 +280,8 @@ class Grid extends React.PureComponent<Props, State> {
     getScrollbarSize: scrollbarSize,
     noContentRenderer: renderNull,
     onScroll: () => {},
+    onScrollStart: () => null,
+    onScrollEnd: () => null,
     onScrollbarPresenceChange: () => {},
     onSectionRendered: () => {},
     overscanColumnCount: 0,
@@ -803,6 +815,14 @@ class Grid extends React.PureComponent<Props, State> {
     }
 
     this._maybeCallOnScrollbarPresenceChange();
+
+    // scroll start/end callbacks
+    if (this.state.isScrolling !== prevState.isScrolling) {
+      if (this.state.isScrolling && this.props.onScrollStart)
+        this.props.onScrollStart();
+      if (!this.state.isScrolling && this.props.onScrollEnd)
+        this.props.onScrollEnd();
+    }
   }
 
   componentWillUnmount() {
