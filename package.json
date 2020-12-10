@@ -70,7 +70,8 @@
   "bugs": {
     "url": "https://github.com/bvaughn/react-virtualized/issues"
   },
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
     "@babel/cli": "^7.7.0",
     "@babel/core": "^7.7.2",
     "@babel/plugin-external-helpers": "^7.2.0",
@@ -136,9 +137,7 @@
     "watch": "^1.0.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0"
-  },
-  "dependencies": {
+    "webpack-dev-server": "^3.9.0",
     "@babel/runtime": "^7.7.2",
     "clsx": "^1.0.4",
     "dom-helpers": "^5.1.3",
